@@ -1,0 +1,10 @@
+coderask:
+  sms:
+    access-key: LTAI4G27hEov5SpwACVjMPr9
+    access-secret: K8i1ogWuDrJkjm4mLSbuv6sSwOfCE4
+    provider: aliyun
+    signName: 猿问app
+    checkCodeTemplate:
+      register: SMS_205610277
+      login: SMS_205620231
+      resetPassword: SMS_205605230

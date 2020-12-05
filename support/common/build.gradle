@@ -1,0 +1,9 @@
+apply from: rootProject.file('base-lib.gradle')
+
+group = 'com.coderask.server.support.common'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+}
+

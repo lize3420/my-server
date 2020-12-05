@@ -1,0 +1,11 @@
+apply from: rootProject.file('base-lib.gradle')
+
+group = 'com.coderask.server.support.sms'
+
+dependencies {
+    implementation 'com.aliyun:aliyun-java-sdk-core:4.5.3'
+    implementation project(':support:mysql')
+    api project(':support:common')
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+}

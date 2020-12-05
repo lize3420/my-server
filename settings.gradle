@@ -1,0 +1,10 @@
+rootProject.name = 'server'
+
+include 'support:common'
+include 'support:auth'
+include 'support:sms'
+include 'support:mysql'
+include 'support:redis'
+include 'support:verification-code'
+
+include 'client:sms'

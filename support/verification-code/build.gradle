@@ -1,0 +1,9 @@
+apply from: rootProject.file('base-lib.gradle')
+
+group = 'com.coderask.server.support.verification-code'
+
+dependencies {
+    implementation project(':support:redis')
+    implementation project(':support:sms')
+    api project(':support:common')
+}

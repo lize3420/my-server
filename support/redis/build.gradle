@@ -1,0 +1,8 @@
+apply from: rootProject.file('base-lib.gradle')
+
+
+group = 'com.coderask.server.support.mysql'
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-data-redis'
+}

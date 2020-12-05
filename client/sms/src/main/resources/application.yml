@@ -1,0 +1,8 @@
+coderask:
+  sms:
+    access-key: LTAI4GCrG6QWN9oJvXKmXTLF
+    access-secret: your-access-secret
+    provider: aliyun
+spring:
+  profiles:
+    active: h2
