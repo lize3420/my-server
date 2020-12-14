@@ -1,0 +1,8 @@
+apply from: rootProject.file('base-client.gradle')
+
+group = 'com.coderask.client.sms'
+
+dependencies {
+    implementation project(':support:verification-code')
+    implementation project(':support:auth')
+}

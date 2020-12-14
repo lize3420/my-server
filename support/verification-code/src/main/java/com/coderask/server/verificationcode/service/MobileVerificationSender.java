@@ -24,7 +24,7 @@ public class MobileVerificationSender implements IVerificationCodeSender {
 
     @Override
     public void send(String target, String type, String code) {
-        smsSendService.send(target, verificationCodeProperties.getSmsTemplate().get("type"), Map.of(PARAMS_KEY_CODE, code));
+        smsSendService.send(target, verificationCodeProperties.getSmsTemplate().get(type), Map.of(PARAMS_KEY_CODE, code));
     }
 
     @Override
