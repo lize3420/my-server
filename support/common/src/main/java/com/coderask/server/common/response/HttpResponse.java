@@ -1,9 +1,11 @@
 package com.coderask.server.common.response;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class HttpResponse extends Response{
     private int httpStatus;
 

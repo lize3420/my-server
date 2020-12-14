@@ -38,4 +38,7 @@ out/
 .history/
 
 ### local test configration ###
-/client/**/configration
+/client/*/config/**.yml
+/client/*/config/**.properties
+/server/*/config/**.yml
+/server/*/config/**.properties

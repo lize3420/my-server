@@ -1,4 +1,4 @@
-package com.coderask.server.verificationcode.autoconfigure;
+package com.coderask.server.common.autoconfigure;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Data
 @ConfigurationProperties("coderask.verificationcode")
-public class VerificationCodeProperties {
+public class CommonProperties {
 
    /**
     * 验证码有效期,单位：分

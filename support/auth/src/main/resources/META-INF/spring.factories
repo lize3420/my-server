@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.coderask.server.sms.autoconfigure.SMSAutoConfiguration
+  com.coderask.server.auth.autoconfigure.AuthAutoConfiguration

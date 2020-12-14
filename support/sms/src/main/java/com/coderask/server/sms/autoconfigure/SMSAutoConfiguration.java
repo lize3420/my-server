@@ -4,9 +4,10 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.profile.DefaultProfile;
 import com.coderask.server.sms.service.AliCheckCodeService;
+import com.coderask.server.sms.service.AliSmsSendService;
 import com.coderask.server.sms.service.ICheckCodeService;
+import com.coderask.server.sms.service.SmsSendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ public class SMSAutoConfiguration {
     @Bean
 //    @ConditionalOnProperty(name = "coderask.sms.provider", havingValue = "aliyun",matchIfMissing = true)
     @Conditional(AliCondition.class)
-    public IAcsClient acsClient(){
+    public IAcsClient acsClient() {
         DefaultProfile profile = DefaultProfile.getProfile(smsProperties.getAliRegionId(), smsProperties.getAccessKey(), smsProperties.getAccessSecret());
         return new DefaultAcsClient(profile);
     }
@@ -36,10 +37,14 @@ public class SMSAutoConfiguration {
     @Bean("checkCodeService")
 //    @ConditionalOnProperty(name = "coderask.sms.provider", havingValue = "aliyun",matchIfMissing = true)
     @Conditional(AliCondition.class)
-    public ICheckCodeService aliCheckCodeService(){
+    public ICheckCodeService aliCheckCodeService() {
         return new AliCheckCodeService();
     }
 
-    public
+    @Bean("smsSendService")
+    @Conditional(AliCondition.class)
+    public SmsSendService smsSendService() {
+        return new AliSmsSendService(smsProperties, acsClient());
+    }
 
 }

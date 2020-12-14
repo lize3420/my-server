@@ -8,3 +8,5 @@ include 'support:redis'
 include 'support:verification-code'
 
 include 'client:sms'
+
+include 'server:main'

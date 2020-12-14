@@ -1,20 +1,35 @@
 package com.coderask.server.verificationcode.service;
 
-import com.coderask.server.common.response.Response;
+import com.coderask.server.common.util.PhoneUtil;
+import com.coderask.server.sms.service.SmsSendService;
+import com.coderask.server.verificationcode.autoconfigure.VerificationCodeProperties;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
-public class MobileVerificationSender implements IVerificationCodeSender{
+@RequiredArgsConstructor
+public class MobileVerificationSender implements IVerificationCodeSender {
+
+    public static final String PARAMS_KEY_CODE = "code";
+
+    @Autowired
+    @Qualifier("smsSendService")
+    private final SmsSendService smsSendService;
+    @Autowired
+    private final VerificationCodeProperties verificationCodeProperties;
 
     @Override
-    public Response send(String target, String type, String code) {
-        return null;
+    public void send(String target, String type, String code) {
+        smsSendService.send(target, verificationCodeProperties.getSmsTemplate().get("type"), Map.of(PARAMS_KEY_CODE, code));
     }
 
     @Override
     public boolean support(String target) {
-
-        return false;
+        return PhoneUtil.isMobile(target);
     }
 
     @Override

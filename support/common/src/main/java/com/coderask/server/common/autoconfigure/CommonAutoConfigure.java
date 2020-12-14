@@ -1,4 +1,4 @@
-package com.coderask.server.verificationcode.autoconfigure;
+package com.coderask.server.common.autoconfigure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration()
 @ComponentScan(basePackages = {"com.coderask.server.verificationcode"})
-@EnableConfigurationProperties({VerificationCodeProperties.class})
-public class VerificationCodeAutoConfigure {
+@EnableConfigurationProperties({CommonProperties.class})
+public class CommonAutoConfigure {
 
     @Autowired
-    private VerificationCodeProperties verificationCodeProperties;
+    private CommonProperties verificationCodeProperties;
 
 }

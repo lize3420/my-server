@@ -1,10 +1,22 @@
 package com.coderask.server.common.exception;
 
 import com.coderask.server.common.response.ResponseConstant;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString
 public class HttpException extends BusinessException{
+
+    public HttpException() {
+        super();
+    }
+
+    public HttpException(Throwable throwable) {
+        super(throwable);
+    }
+
+
     private int httpStatus;
 
     public static HttpException of(int httpStatus){
