@@ -1,12 +1,12 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: server-main
 
 on: workflow_dispatch
 
 jobs:
-  build:
+  build-deploy-image:
 
     runs-on: ubuntu-latest
 
@@ -19,4 +19,8 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :server:main:bootjar
+      run: ./gradlew :server:main:jib
+      env:
+        username: {{GITHUB_ACTOR}}
+        password: {{GITHUB_TOKEN}
+
