@@ -21,6 +21,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew :server:main:jib
       env:
-        username: ${{ GITHUB_ACTOR }}
-        password: ${{ GITHUB_TOKEN }}
+        username: ${{ secrets.GITHUB_ACTOR }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
