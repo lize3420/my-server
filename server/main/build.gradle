@@ -14,8 +14,8 @@ jib {
     to {
         image 'docker.pkg.github.com/lize3420/my-server/my-server-main'
         auth {
-            username System.getenv("GITHUB_ACTOR")
-            password System.getenv("GITHUB_TOKEN")
+            username System.getenv("username")
+            password System.getenv("password")
         }
     }
 }
