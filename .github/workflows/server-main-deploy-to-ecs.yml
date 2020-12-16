@@ -21,11 +21,11 @@ jobs:
     - name: Build Jar
       run: ./gradlew :server:main:clean :server:main:bootjar
     - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
-        with:
-          username: 'root'
-          server: ${{ secrets.DEPLOY_SERVER_IP }}
-          ssh_private_key: ${{ secrets.DEPLOY_SERVER_SSH_PRIVATE_KEY }}
-          local_path: './server/main/build/libs'
-          remote_path: '/var/www/server-main'
-          args: '-o ConnectTimeout=5'
+      uses: wlixcc/SFTP-Deploy-Action@v1.0
+      with:
+        username: 'root'
+        server: ${{ secrets.DEPLOY_SERVER_IP }}
+        ssh_private_key: ${{ secrets.DEPLOY_SERVER_SSH_PRIVATE_KEY }}
+        local_path: './server/main/build/libs'
+        remote_path: '/var/www/server-main'
+        args: '-o ConnectTimeout=5'
