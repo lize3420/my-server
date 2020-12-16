@@ -1,7 +1,5 @@
 apply from: rootProject.file('base-client.gradle')
 
-group = 'com.coderask.client.sms'
-
 dependencies {
     implementation project(':support:verification-code')
     implementation project(':support:auth')
@@ -14,8 +12,38 @@ jib {
     to {
         image 'docker.pkg.github.com/lize3420/my-server/my-server-main'
         auth {
-            username System.getenv("username")
-            password System.getenv("password")
+            username System.getenv("GITHUB_ACTOR") ?: "lize3420"
+            password System.getenv("GITHUB_TOKEN") ?: "password"
+        }
+    }
+}
+
+configurations {
+    [apiElements, runtimeElements].each {
+        it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+        it.outgoing.artifact(bootJar)
+    }
+}
+publishing {
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "http://maven.pkg.github.com/lize3420/my-server"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: "lize3420"
+                password = System.getenv("GITHUB_TOKEN") ?: "password"
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            groupId = getRootProject().getGroup()
+            artifactId = 'server-main'
+            version = getRootProject().getVersion() + '-' + (System.getenv("GITHUB_RUN_NUMBER") ?: '1')
+
+            from components.java
         }
     }
 }
