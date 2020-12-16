@@ -1,0 +1,31 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: server-main-deploy-to-ecs
+
+on: workflow_dispatch
+
+jobs:
+  build-deploy-image:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build Jar
+      run: ./gradlew :server:main:clean :server:main:bootjar
+    - name: deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'root'
+          server: ${{ secrets.DEPLOY_SERVER_IP }}
+          ssh_private_key: ${{ secrets.DEPLOY_SERVER_SSH_PRIVATE_KEY }}
+          local_path: './server/main/build/libs'
+          remote_path: '/var/www/server-main'
+          args: '-o ConnectTimeout=5'
