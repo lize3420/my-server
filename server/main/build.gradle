@@ -3,6 +3,20 @@ apply from: rootProject.file('base-client.gradle')
 dependencies {
     implementation project(':support:verification-code')
     implementation project(':support:auth')
+    implementation project(':support:common')
+
+}
+
+version(getRootProject().getVersion())
+
+ext{
+     artifactId = 'server-main'
+}
+
+bootJar {
+    // 修改输出文件名，增加构建号
+    def version = archiveVersion.get() + '-' + getBuildNumber()
+    archiveFileName = "${archiveBaseName.get()}-${version}.${archiveExtension.get()}"
 }
 
 jib {
@@ -18,6 +32,7 @@ jib {
     }
 }
 
+// maven publish
 configurations {
     [apiElements, runtimeElements].each {
         it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
@@ -39,11 +54,15 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = getRootProject().getGroup()
-            artifactId = 'server-main'
-            version = getRootProject().getVersion() + '-' + (System.getenv("GITHUB_RUN_NUMBER") ?: '1')
+            groupId = group
+            artifactId = artifactId
+            version = version + '-' + getBuildNumber()
 
             from components.java
         }
     }
+}
+
+def getBuildNumber(){
+    return System.getenv("GITHUB_RUN_NUMBER") ?: '1'
 }

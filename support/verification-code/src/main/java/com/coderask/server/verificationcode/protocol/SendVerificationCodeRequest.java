@@ -11,4 +11,5 @@ import lombok.ToString;
 public class SendVerificationCodeRequest extends Request {
     private String target;
     private String type;
+    private String verifyCode;
 }

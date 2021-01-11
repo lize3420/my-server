@@ -6,6 +6,7 @@ include 'support:sms'
 include 'support:mysql'
 include 'support:redis'
 include 'support:verification-code'
+include 'support:behavior-verify'
 
 include 'client:sms'
 

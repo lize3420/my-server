@@ -1,5 +1,5 @@
 package com.coderask.server.auth.model;
 
-public enum LoginEntityType {
-    mobile,
+public final class LoginEntityType {
+    public final static String mobile = "mobile";
 }

@@ -1,0 +1,11 @@
+apply from: rootProject.file('base-lib.gradle')
+
+group = 'com.coderask.server'
+ext{
+    artifactId = 'support-behavior-verify'
+}
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api project(':support:common')
+}

@@ -5,5 +5,7 @@ group = 'com.coderask.server.support.verification-code'
 dependencies {
     implementation project(':support:redis')
     implementation project(':support:sms')
-    api project(':support:common')
+    implementation project(':support:common')
+    implementation project(':support:behavior-verify')
+
 }

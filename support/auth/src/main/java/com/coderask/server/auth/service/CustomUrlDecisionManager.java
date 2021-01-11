@@ -1,4 +1,4 @@
-package com.coderask.server.auth.config;
+package com.coderask.server.auth.service;
 
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;

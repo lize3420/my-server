@@ -27,7 +27,8 @@ subprojects {
         mavenCentral()
     }
 
-    version = '0.0.1-SNAPSHOT'
+    group = group
+    version = version
     sourceCompatibility = '11'
 
 

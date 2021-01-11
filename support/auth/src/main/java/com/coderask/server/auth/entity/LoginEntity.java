@@ -1,25 +1,21 @@
 package com.coderask.server.auth.entity;
 
-import com.coderask.server.auth.model.LoginEntityType;
+import com.coderask.server.mysql.BaseEntity;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames="loginName")})
 @Data
-public class LoginEntity {
+@EqualsAndHashCode(callSuper = true)
+public class LoginEntity extends BaseEntity {
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String id;
+    private String loginName;
     @Column
     private String userId;
     @Column
-    private String loginName;
-    @Column
-    private boolean credentialsNonExpired;
-    @Column
-    @Enumerated(EnumType.STRING)
-    private LoginEntityType type;
+    private String type;
 }
